@@ -1,24 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import Register from './components/UserAuth/Register/Register';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './components/UserAuth/Login/Login';
+import Landing from './components/Landing/Landing';
+import AddWaste from './components/WasteProduct/Add/AddWaste';
+import ViewWastes from './components/WasteProduct/View/ViewWaste';
+import SingleWaste from './components/WasteProduct/SingleWaste/SingleWaste';
+import AddRecycle from './components/RecycledProduct/Add/AddRecycle';
 
 function App() {
+  const token = sessionStorage.getItem('token');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/register" element={token ? <Landing /> : <Register />} />
+        <Route path="/login" element={token ? <Landing /> : <Login />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/add-waste" element={<AddWaste />} />
+        <Route path="/view-waste" element={<ViewWastes />} />
+        <Route path="/details/:itemId" element={<SingleWaste />} />
+        <Route path="/add-recycle" element={<AddRecycle />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
