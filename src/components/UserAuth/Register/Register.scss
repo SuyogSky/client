@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: #18284b;
     padding: 0 6%;
 
     .banner-image {
@@ -15,7 +15,7 @@
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        filter: brightness(0.7);
+        filter: brightness(0.5);
         position: fixed;
         top: 0;
         left: 0;
@@ -25,8 +25,8 @@
         min-width: 300px;
         padding: 20px 50px;
         z-index: 100;
-        background-color: white;
-        border-radius: 3px;
+        background-color: rgba(255, 255, 255, 0.634);
+        border-radius: 5px;
 
         h1 {
             color: green;
@@ -37,6 +37,7 @@
             display: flex;
             flex-direction: row-reverse;
             gap: 40px;
+            backdrop-filter: blur(10px);
             .image {
                 padding: 70px 0;
                 .label {
@@ -107,7 +108,6 @@
                     flex-direction: column;
                     gap: 10px;
                     max-width: 350px;
-                    background-color: #fff;
                     padding: 20px;
                     border-radius: 20px;
                     position: relative;
@@ -158,6 +158,7 @@
                   
                   .signin a {
                     color: var(--main-color);
+                    cursor: pointer;
                   }
                   
                   .signin a:hover {
@@ -180,6 +181,7 @@
                     outline: 0;
                     border: 1px solid rgba(105, 105, 105, 0.397);
                     border-radius: 3px;
+                    background-color: rgba(255, 255, 255, 0.3);
                   }
                   
                   .form label .input + span {
@@ -249,6 +251,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Optional: Style the dropdown arrow */
@@ -265,6 +268,6 @@
 
 /* Optional: Style the selected option */
 .custom-select option {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.634);
   color: #333;
 }

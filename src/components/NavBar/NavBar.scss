@@ -4,24 +4,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
     padding: 0 6%;
     transition: all 0.5s ease;
     top: 0;
     left: 0;
     z-index: 10;
     h1{
-        font-size: 20px;
+        font-size: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 1px;
         .span1{
-            color: rgb(179, 0, 0);
+            color: rgb(161, 30, 30);
         }
         .span2{
             color: white;
-            font-size: 32px;
+            font-size: 48px;
             font-style: italic;
         }
         .span3{
@@ -30,24 +29,6 @@
     }
     &.scroll{
         background-color: var(--dark-bg-color);
-        h1{
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1px;
-            .span1{
-                color: rgb(179, 0, 0);
-            }
-            .span2{
-                color: white;
-                font-size: 32px;
-                font-style: italic;
-            }
-            .span3{
-                color: rgb(31, 196, 31);
-            }
-        }
         ul li{
             color: white;
         }
@@ -55,44 +36,27 @@
     &.dark{
         background-color: var(--dark-bg-color);
         position: sticky;
-        h1{
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1px;
-            .span1{
-                color: rgb(179, 0, 0);
-            }
-            .span2{
-                color: white;
-                font-size: 32px;
-                font-style: italic;
-            }
-            .span3{
-                color: rgb(31, 196, 31);
-            }
-        }
         .nav-menu li{
             color: white;
             ul li{
                 color: black;
             }
-            &:hover{
-                color: var(--main-color);
-            }
         }
     }
-    ul{
+    .nav-menu{
         display: flex;
         list-style-type: none;
         gap: 30px;
         cursor: pointer;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         li{
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 400;
             &:hover{
                 color: var(--main-color);
+                filter: brightness(1);
             }
             &.drop-down{
                 position: relative;
@@ -109,8 +73,10 @@
                     display: none;
                     gap: 0;
                     color: black;
-                    width: 170px;
+                    width: 190px;
+                    list-style: none;
                     li{
+                        color: black;
                         padding: 10px 20px;
                         font-size: 14px;
                         &:hover{
@@ -126,12 +92,13 @@
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        background-color: rgb(90, 90, 90);
         cursor: pointer;
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: all 0.5s ease;
+        transform: scale(1.2);
         .icon{
             font-size: 32px;
             color: rgb(218, 218, 218);

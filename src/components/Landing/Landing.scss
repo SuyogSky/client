@@ -1,5 +1,5 @@
 .landing-section{
-    background: linear-gradient(rgb(52, 67, 52), rgb(98, 233, 98));
+    background: linear-gradient(rgb(35, 193, 201), rgb(11, 179, 239));
     width: 100%;
     height: 100vh;
     background-position: center;
@@ -13,6 +13,7 @@
         right: 6%;
         width: 400px;
         animation: float 4s infinite linear;
+        width: 500px;
     }
     @keyframes float {
         0% {
