@@ -7,7 +7,6 @@ import { IoMdLogOut } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import Axios from 'axios'
 import { RxCrossCircled } from 'react-icons/rx'
-import ChatIcon from '../../Assets/Images/chatbot.png'
 import { IoSend } from "react-icons/io5";
 
 const swal = require('sweetalert2')
