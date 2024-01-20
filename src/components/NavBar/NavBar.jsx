@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./NavBar.scss";
 import ip from '../ip/ip'
 import { IoMdLogOut } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
+import Axios from 'axios'
+import { RxCrossCircled } from 'react-icons/rx'
+import ChatIcon from '../../Assets/Images/chatbot.png'
+const swal = require('sweetalert2')
 
 const NavBar = ({ position, bg, clas }) => {
   const navigate = useNavigate();
@@ -166,7 +170,7 @@ const NavBar = ({ position, bg, clas }) => {
       </div>
 
       <div className="chat" onClick={() => setChatDisplay(true)}>
-        <img src="https://previews.123rf.com/images/goodzone95/goodzone951803/goodzone95180300026/96725720-chatbot-icon.jpg" alt="" height={"100px"} />
+        <img src={ChatIcon} alt="" height={"100px"} />
       </div>
       {chatdisplay && (
         <div className="chatbox" ref={messagesContainerRef}>
