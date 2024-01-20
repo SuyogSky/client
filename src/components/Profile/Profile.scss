@@ -1,0 +1,157 @@
+.profile-section{
+    width: 100%;
+    background-color: rgba(0,0,0,0.1);
+    .user-info{
+        position: fixed;
+        top: 60px;
+        left: 0;
+        background-color: white;
+        width: 270px;
+        height: calc(100vh - 60px);
+        padding: 20px;
+        .profile-image{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            z-index: 100;
+            border: 2px solid rgba(0,0,0,0.3);
+        }
+        .info-container{
+            width: 100%;
+            padding: 20px 10px;
+            p{
+                font-size: 13px;
+                span{
+                    font-weight: bold;
+                }
+            }
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+        .history-navigator{
+            width: 100%;
+            margin-top: 20px;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            li{
+                padding: 10px 20px;
+                background-color: rgba(0,0,0,0.1);
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                &:hover{
+                    background-color: rgba(0,0,0,0.2);
+                }
+            }
+        }
+    }
+    .post-container{
+        width: calc(100% - 270px);
+        margin-left: 270px;
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .add-post-form{
+            background-color: white;
+            width: 400px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-radius: 3px;
+            gap: 10px;
+            .profile-image{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+            .input{
+                background-color: rgba(0,0,0,0.1);
+                padding: 0 15px;
+                display: flex;
+                align-items: center;
+                border-radius: 50px;
+                height: 30px;
+                width: 90%;
+                font-size: 12px;
+                color: rgba(0,0,0,0.5);
+            }
+        }
+        .previous-post{
+            width: 400px;
+            background-color: white;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 3px;
+            .top{
+                display: flex;
+                gap: 20px;
+                align-items: center;
+                border-bottom: 1px solid rgba(0,0,0,0.5);
+                padding-bottom: 10px;
+                .profile-image{
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                }
+                .info{
+                    h3{
+                        font-size: 14px;
+                        font-weight: 600;
+                    }
+                    p{
+                        font-size: 10px;
+                    }
+                }
+            }
+            .content{
+                .image{
+                    width: 100%;
+                    .media-player{
+                        width: auto;
+                        height: auto;
+                        video{
+                            max-width: 360px;
+                        }
+                    }
+                }
+            }
+            .options{
+                width: 100%;
+                border-top: 1px solid rgba(0,0,0,0.3);
+                padding: 10px;
+                text-align: center;
+                margin-top: 20px;
+                cursor: pointer;
+                &:hover{
+                    background-color: rgba(0,0,0,0.2);
+                }
+            }
+        }
+    }
+}
+.add-form-container{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    display: none;
+    &.active{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .cross{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 32px;
+        color: white;
+        cursor: pointer;
+    }
+}

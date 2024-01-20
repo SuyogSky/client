@@ -25,11 +25,11 @@
             font-style: italic;
         }
         .span3{
-            color: rgb(31, 196, 31);
+            color: var(--main-color);
         }
     }
     &.scroll{
-        background-color: rgb(82, 82, 82);
+        background-color: var(--dark-bg-color);
         h1{
             font-size: 20px;
             display: flex;
@@ -53,7 +53,7 @@
         }
     }
     &.dark{
-        background-color: rgb(82, 82, 82);
+        background-color: var(--dark-bg-color);
         position: sticky;
         h1{
             font-size: 20px;
@@ -77,6 +77,9 @@
             color: white;
             ul li{
                 color: black;
+            }
+            &:hover{
+                color: var(--main-color);
             }
         }
     }
@@ -112,8 +115,43 @@
                         font-size: 14px;
                         &:hover{
                             background-color: rgba(0,0,0,0.1);
+                            color: black;
                         }
                     }
+                }
+            }
+        }
+    }
+    .profile{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: white;
+        cursor: pointer;
+        position: relative;
+        &:hover{
+            .options{
+                display: flex;
+            }
+        }
+        .options{
+            position: absolute;
+            background-color: rgb(245, 245, 245);
+            display: none;
+            flex-direction: column;
+            gap: 0;
+            top: 100%;
+            left: -50%;
+            border-radius: 2px;
+            li{
+                padding: 10px;
+                width: 100px;
+                color: black;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                &:hover{
+                    background-color: rgba(0,0,0,0.1);
                 }
             }
         }

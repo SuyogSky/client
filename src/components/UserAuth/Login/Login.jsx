@@ -31,6 +31,8 @@ const Login = () => {
                     showConfirmButton: false,
                 })
                 win.setItem('token', response.data.token)
+                const userString = JSON.stringify(response.data.data);
+                win.setItem('user', userString)
             }
             else{
                 swal.fire({

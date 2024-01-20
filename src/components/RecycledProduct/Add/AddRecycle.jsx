@@ -27,7 +27,7 @@ const AddRecycle = () => {
             formData.append('name', name);
             formData.append('description', description);
             formData.append('image', path);
-            const response = await Axios.post(`${ip()}/products/recycleProducts/`, formData, {
+            const response = await Axios.post(`${ip()}/products/recycledProducts/`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Token ${sessionStorage.getItem('token')}`
