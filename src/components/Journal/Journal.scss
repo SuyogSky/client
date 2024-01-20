@@ -1,0 +1,63 @@
+/* App.css */
+
+.journal-app-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .journal-card {
+    width: 300px;
+    height: 400px; /* Adjust height based on your preference */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .journal-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .journal-title {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .journal-description {
+    margin-bottom: 2px;
+    font-size: 0.7rem;
+    max-height: 80px; /* Set a maximum height for the description */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
+  }
+  
+  .journal-image {
+    width: 100%;
+    height: 200px; /* Adjust height based on your preference */
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 5px;
+  }
+  
+  .journal-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .journal-button:hover {
+    background-color: #2980b9;
+  }
+  

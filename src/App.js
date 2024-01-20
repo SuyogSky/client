@@ -15,6 +15,7 @@ import MyPosts from './components/Profile/MyPosts/MyPosts';
 import EventDetails from './components/EventDetails/EventDetails';
 import AddedProducts from './components/Profile/AddedProducts/AddedProducts';
 import Comments from './components/Posts/Comments/Comments';
+import Journals from './components/Journal/Journal'
 import ViewMultipleWasteMap from './components/WasteProduct/MultipleWastesMap/ViewMultipleWasteMap'
 function App() {
   const token = sessionStorage.getItem('token');
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={token ? <Landing /> : <Login />} />
         <Route path="/" element={<Landing />} />
         <Route path="/add-waste" element={<AddWaste />} />
+        <Route path="/get-journal" element={<Journals />}/>
         <Route path="/view-waste" element={<ViewWastes />} />
         <Route path="/details/:itemId" element={<SingleWaste />} />
         <Route path="/add-recycle" element={<AddRecycle />} />

@@ -5,16 +5,15 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import osm from '../../../osm-provider';
-import cities from '../../../Assets/cities.json';
-import useGeoLocation from "../../../useGeoLocation";
-import NavBar from "../../NavBar/NavBar";
+import useGeoLocation from '../../../useGeoLocation';
+import NavBar from '../../NavBar/NavBar';
 import Axios from 'axios';
-import ip from "../../ip/ip";
-import Loading from "../../Loading/Loading";
-import { useNavigate } from "react-router-dom";
-import swal from 'sweetalert2';
-import userMarker from "../../../Assets/Images/user_marker.png";
-import Image from "../../../Assets/Images/marker.png";
+import ip from '../../ip/ip';
+import Loading from '../../Loading/Loading';
+import { useNavigate } from 'react-router-dom';
+import userMarker from '../../../Assets/Images/user_marker.png';
+import Image from '../../../Assets/Images/marker.png';
+import '../MultipleWastesMap/ViewMultipleWasteMap.scss'; // Import your custom styles for this component
 
 const markerIcon = new L.Icon({
   iconUrl: Image,
@@ -34,10 +33,6 @@ const ZOOM_LEVEL = 9;
 
 const AddWaste = () => {
   const navigate = useNavigate();
-  const [file, setFile] = useState(null);
-  const [path, setPath] = useState(null);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -45,6 +40,26 @@ const AddWaste = () => {
   const [drawControl, setDrawControl] = useState(null);
   const mapRef = useRef();
   const location = useGeoLocation();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await Axios.get(`${ip()}/products/wasteProductsAll/`, {
+          headers: {
+            Authorization: `Token ${sessionStorage.getItem('token')}`,
+          },
+        });
+        setProducts(response.data.message);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const _onCreate = (e) => {
     const { lat, lng } = e.layer.getLatLng();
@@ -79,36 +94,12 @@ const AddWaste = () => {
       alert(location.error.message);
     }
   };
-  const [products, setProducts] = useState([]);
-  
-  useEffect(() => {
-      const fetchProducts = () => {
-          Axios.get(`${ip()}/products/wasteProductsAll/`, {
-              headers: {
-                  Authorization: `Token ${sessionStorage.getItem('token')}`
-              }
-          })
-          .then((response) => {
-              console.log(response.data)
-              setProducts(response.data['message']);
-          })
-          .catch((error) => {
-              console.error("Error fetching products:", error);
-          })
-          .finally(() => {
-              setLoading(false);
-              console.log('hihi',products);
-          });
-      };
-  
-      fetchProducts();
-  }, []);
-  
+
   return (
-    <>
-      <NavBar clas='dark' />
-      <div className="right">
-        <MapContainer center={[13.084622, 80.248357]} zoom={ZOOM_LEVEL} className="MapContainer" ref={mapRef}>
+    <div className="add-waste-container">
+      <NavBar clas="dark" />
+      <div className="right-another">
+        <MapContainer center={[13.084622, 80.248357]} zoom={ZOOM_LEVEL} className="map-container2" ref={mapRef}>
           <FeatureGroup>
             <EditControl
               position="topright"
@@ -126,26 +117,21 @@ const AddWaste = () => {
             />
           </FeatureGroup>
           <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribute}></TileLayer>
-          {cities.map((city, idx) => (
-            <Marker position={[city.lat, city.lng]} icon={markerIcon} key={idx}>
-              <Popup>
-                <b>{city.city}, {city.country}</b>
-              </Popup>
-            </Marker>
-          ))}
-          {markers.map((marker, idx) => (
+          {products.map((product, idx) => (
             <Marker
               key={idx}
-              position={[marker.lat, marker.lng]}
+              position={[parseFloat(product.latitude), parseFloat(product.longitude)]}
               icon={markerIcon}
               eventHandlers={{
-                click: () => handleMarkerClick(marker),
+                click: () => setSelectedMarker(product),
               }}
             >
               <Popup>
-                <b>Marker at:</b> <br />
-                Latitude: {marker.lat.toFixed(6)} <br />
-                Longitude: {marker.lng.toFixed(6)}
+                <b>Waste Product Details:</b> <br />
+                Name: {product.name} <br />
+                Description: {product.description} <br />
+                Latitude: {parseFloat(product.latitude).toFixed(6)} <br />
+                Longitude: {parseFloat(product.longitude).toFixed(6)}
               </Popup>
             </Marker>
           ))}
@@ -153,14 +139,15 @@ const AddWaste = () => {
             <Marker icon={userIcon} position={[location.coordinates.lat, location.coordinates.lng]}></Marker>
           )}
         </MapContainer>
+
       </div>
-      <div className='maps-buttons-container'>
-+
-                <button type='button' onClick={showMyLocation}>
-                  Show my location
-                </button>
-              </div>
-    </>
+      <div className="maps-buttons-container">
+        <button type="button" onClick={showMyLocation}>
+          Show my location
+        </button>
+      </div>
+    </div>
   );
-          }
-export default AddWaste
+};
+
+export default AddWaste;

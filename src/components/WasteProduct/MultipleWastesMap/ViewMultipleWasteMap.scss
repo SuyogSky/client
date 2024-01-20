@@ -1,12 +1,29 @@
-.MapContainer2 {
-    height: 60vh; /* Set the height of the map container to 60% of the viewport height */
-    width: 60%; /* Set the width of the map container to 60% of the parent container */
-    position: absolute; /* Set position to absolute for centering */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
-  }
-  
-  /* Center the map within the container */
+.add-waste-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-another {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-container2 {
+  flex: 1;
+  // width: 600px;
+  // width: 100%;
+}
+
+.product-list-container {
+  margin-top: 20px;
+}
+
+.maps-buttons-container {
+  margin-top: 20px;
+}
+
+/* Add any additional styling as needed */

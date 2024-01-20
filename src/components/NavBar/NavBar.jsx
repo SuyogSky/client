@@ -47,6 +47,7 @@ const NavBar = ({ position, bg, clas }) => {
           </ul>
         </li>
         <li onClick={() => navigate('/posts')}>Posts</li>
+        <li onClick={()=> navigate('/get-journal')}>Journals </li>
         <li onClick={() => navigate('/events')}>Event Postings</li>
       </ul>
 
