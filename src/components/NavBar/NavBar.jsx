@@ -39,6 +39,8 @@ const NavBar = ({ position, bg, clas }) => {
           Waste Management
           <ul className="drop-items">
             <li onClick={() => navigate('/view-waste')}>Waste Products</li>
+            <li onClick={() => navigate('/view-map')}>Map</li>
+
             <li onClick={() => navigate('/view-recycle')}>Recycled Products</li>
             <li onClick={() => navigate('/add-waste')}>Add Waste Products</li>
             <li onClick={() => navigate('/add-recycle')}>Add Recycled Products</li>

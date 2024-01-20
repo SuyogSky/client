@@ -15,7 +15,7 @@ import MyPosts from './components/Profile/MyPosts/MyPosts';
 import EventDetails from './components/EventDetails/EventDetails';
 import AddedProducts from './components/Profile/AddedProducts/AddedProducts';
 import Comments from './components/Posts/Comments/Comments';
-
+import ViewMultipleWasteMap from './components/WasteProduct/MultipleWastesMap/ViewMultipleWasteMap'
 function App() {
   const token = sessionStorage.getItem('token');
   return (
@@ -29,6 +29,8 @@ function App() {
         <Route path="/details/:itemId" element={<SingleWaste />} />
         <Route path="/add-recycle" element={<AddRecycle />} />
         <Route path="/view-recycle" element={<ViewRecycle />} />
+        <Route path="/view-map" element={< ViewMultipleWasteMap/>} />
+       
         <Route path="/recycleDetails/:itemId" element={<SingleRecycle />} />
         
         <Route path="/profile" element={<Profile />} />

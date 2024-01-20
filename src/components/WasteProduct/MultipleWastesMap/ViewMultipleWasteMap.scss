@@ -1,0 +1,12 @@
+.MapContainer2 {
+    height: 60vh; /* Set the height of the map container to 60% of the viewport height */
+    width: 60%; /* Set the width of the map container to 60% of the parent container */
+    position: absolute; /* Set position to absolute for centering */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
+  }
+  
+  /* Center the map within the container */
