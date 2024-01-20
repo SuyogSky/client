@@ -1,3 +1,3 @@
-const ip = () => "http://192.168.57.63:8000"
+const ip = () => "http://192.168.57.193:3333"
 
 module.exports =  ip

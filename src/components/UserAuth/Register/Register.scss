@@ -113,9 +113,10 @@
                     position: relative;
                   }
                   
+                  
                   .title {
                     font-size: 28px;
-                    color: royalblue;
+                    color: var(--main-color);
                     font-weight: 600;
                     letter-spacing: -1px;
                     position: relative;
@@ -131,13 +132,13 @@
                     width: 16px;
                     border-radius: 50%;
                     left: 0px;
-                    background-color: royalblue;
+                    background-color: var(--main-color);
                   }
                   
                   .title::before {
                     width: 18px;
                     height: 18px;
-                    background-color: royalblue;
+                    background-color: var(--main-color);
                   }
                   
                   .title::after {
@@ -156,11 +157,11 @@
                   }
                   
                   .signin a {
-                    color: royalblue;
+                    color: var(--main-color);
                   }
                   
                   .signin a:hover {
-                    text-decoration: underline royalblue;
+                    text-decoration: underline var(--main-color);
                   }
                   
                   .flex {
@@ -178,7 +179,7 @@
                     padding: 10px 10px 20px 10px;
                     outline: 0;
                     border: 1px solid rgba(105, 105, 105, 0.397);
-                    border-radius: 10px;
+                    border-radius: 3px;
                   }
                   
                   .form label .input + span {
@@ -209,16 +210,17 @@
                   .submit {
                     border: none;
                     outline: none;
-                    background-color: royalblue;
+                    background-color: var(--main-color);
                     padding: 10px;
-                    border-radius: 10px;
+                    border-radius: 3px;
                     color: #fff;
                     font-size: 16px;
                     transform: .3s ease;
                   }
                   
                   .submit:hover {
-                    background-color: rgb(56, 90, 194);
+                    filter: brightness(0.7);
+                    cursor: pointer;
                   }
                   
                   @keyframes pulse {
@@ -236,4 +238,33 @@
         }
 
     }
+}
+.custom-select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Optional: Style the dropdown arrow */
+.custom-select::after {
+  content: '\25BC'; /* Unicode character for a downward-pointing triangle */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #555;
+  pointer-events: none;
+}
+
+/* Optional: Style the selected option */
+.custom-select option {
+  background-color: #fff;
+  color: #333;
 }

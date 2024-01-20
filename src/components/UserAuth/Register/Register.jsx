@@ -3,6 +3,7 @@ import "./Register.scss"
 import { useNavigate } from 'react-router-dom'
 import Axios from 'axios'
 import ip from "../../ip/ip";
+import Loading from '../../Loading/Loading'
 const swal = require('sweetalert2')
 
 const Register = () => {
@@ -23,8 +24,10 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
 
+    const [loading, setLoading] = useState(false)
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true)
         try {
             const formData = new FormData();
             formData.append('full_name', fullName);
@@ -38,7 +41,6 @@ const Register = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(response.data)
 
             if (response.data.success == 1) {
                 swal.fire({
@@ -50,9 +52,11 @@ const Register = () => {
                     timerProgressBar: true,
                     showConfirmButton: false,
                 })
+                setLoading(false)
                 navigate('/login')
             }
-            else{
+            else {
+                setLoading(false)
                 swal.fire({
                     title: response.data.message,
                     icon: "error",
@@ -71,8 +75,14 @@ const Register = () => {
         }
     };
 
-    return (
-        <section className="register-section">
+    if(loading){
+        return(
+            <Loading />
+        )
+    }
+    else{
+        return(
+            <section className="register-section">
             <div className="banner-image">
 
             </div>
@@ -98,7 +108,10 @@ const Register = () => {
                             handleFile(e)
                         }} />
 
-                        <select name="" id="" onChange={(e) => setRole(e.target.value)}>
+                        <br />
+                        <br />
+                        <label>Select Role:</label>
+                        <select className="custom-select" onChange={(e) => setRole(e.target.value)} value={role}>
                             <option value="user">Regular User</option>
                             <option value="recycler">Recycler</option>
                         </select>
@@ -138,7 +151,8 @@ const Register = () => {
                 </form>
             </div>
         </section>
-    )
+        )
+    }
 }
 
 export default Register

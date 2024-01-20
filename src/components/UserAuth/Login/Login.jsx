@@ -4,6 +4,7 @@ import "./Login.scss"
 import Axios from 'axios'
 import ip from "../../ip/ip";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../Loading/Loading";
 const swal = require('sweetalert2')
 
 
@@ -13,14 +14,16 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    const handleSubmit = (e) =>{
+    const [loading, setLoading] = useState(false)
+    const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true)
         Axios.post(`${ip()}/user/login/`, {
             email: email,
             password: password
-        }).then((response) =>{
-            if(response.data.success === 1){
+        }).then((response) => {
+            if (response.data.success === 1) {
+                setLoading(false)
                 swal.fire({
                     title: "Login Successful",
                     icon: "success",
@@ -33,8 +36,10 @@ const Login = () => {
                 win.setItem('token', response.data.token)
                 const userString = JSON.stringify(response.data.data);
                 win.setItem('user', userString)
+                navigate('/')
             }
-            else{
+            else {
+                setLoading(false)
                 swal.fire({
                     title: response.data.message,
                     icon: "error",
@@ -48,34 +53,41 @@ const Login = () => {
         })
     }
 
-    return (
-        <section className="register-section">
-            <div className="banner-image">
+    if (!loading) {
+        return (
+            <section className="login-section">
+                <div className="banner-image">
 
-            </div>
-            <div className="register-form-container">
-                <form class="form" method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
-                    <div className="input-fields">
-                        <div class="form">
-                            <p class="title">Login</p>
-                            <p class="message">Signup now and get full access to our app. </p>
-                            <label>
-                                <input required class="input" type="email" placeholder="" onChange={e => setEmail(e.target.value)} />
-                                <span>Email</span>
-                            </label>
+                </div>
+                <div className="register-form-container">
+                    <form class="form" method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
+                        <div className="input-fields">
+                            <div class="form">
+                                <p class="title">Login</p>
+                                <p class="message">Signup now and get full access to our app. </p>
+                                <label>
+                                    <input required class="input" type="email" placeholder="" onChange={e => setEmail(e.target.value)} />
+                                    <span>Email</span>
+                                </label>
 
-                            <label>
-                                <input required class="input" type="password" placeholder="" onChange={e => setPassword(e.target.value)} />
-                                <span>Password</span>
-                            </label>
-                            <button type="submit" class="submit">Submit</button>
-                            <p class="signin">Donot have an Account ? <a onClick={() => navigate('/register')}>Sign Up</a> </p>
+                                <label>
+                                    <input required class="input" type="password" placeholder="" onChange={e => setPassword(e.target.value)} />
+                                    <span>Password</span>
+                                </label>
+                                <button type="submit" class="submit">Submit</button>
+                                <p class="signin">Donot have an Account ? <a onClick={() => navigate('/register')}>Sign Up</a> </p>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </section>
-    )
+                    </form>
+                </div>
+            </section>
+        )
+    }
+    else {
+        return (
+            <Loading />
+        )
+    }
 }
 
 export default Login

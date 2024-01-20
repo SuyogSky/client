@@ -8,7 +8,9 @@ import ReactPlayer from 'react-player'
 import { RxCross2 } from "react-icons/rx";
 
 import { FaRegCommentDots } from "react-icons/fa6";
-
+import { FaPencil } from "react-icons/fa6";
+import { IoLocationOutline } from "react-icons/io5";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const swal = require('sweetalert2')
 const EventDetails = () => {
@@ -20,7 +22,7 @@ const EventDetails = () => {
 
   useEffect(() => {
     const fetchPosts = () => {
-      Axios.get(`${ip()}/post/`, {
+      Axios.get(`${ip()}/events/`, {
         headers: {
           Authorization: `Token ${sessionStorage.getItem('token')}`
         }
@@ -46,15 +48,21 @@ const EventDetails = () => {
     setPath(e.target.files[0])
   }
 
-  const [content, setContent] = useState('')
+  const [title, setTitle] = useState('')
+  const [location, setLocation] = useState('')
+  const [date, setDate] = useState('')
+  const [description, setDescription] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append('content', content);
-      formData.append('media', path);
-      const response = await Axios.post(`${ip()}/post/`, formData, {
+      formData.append('type', title);
+      formData.append('location', location);
+      formData.append('date_of_event', date);
+      formData.append('description', description);
+      formData.append('image', path);
+      const response = await Axios.post(`${ip()}/events/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Token ${sessionStorage.getItem('token')}`
@@ -96,7 +104,7 @@ const EventDetails = () => {
   return (
     <>
       <NavBar clas='dark' />
-      <section className="posts-section">
+      <section className="events-section">
         <div className="add-post-form">
           <div className="profile-image"
             style={currentUser ? {
@@ -107,18 +115,15 @@ const EventDetails = () => {
             } : null}
           >
           </div>
-          <div className="input" onClick={() => toggleAddPost()}>Add an Event Detail.</div>
+          <div className="input" onClick={() => toggleAddPost()}>Post an Event details.</div>
         </div>
-        <br />
         {posts
           ? posts.map((post) => {
-            const imgPath = ip() + post.media
+            const imgPath = ip() + post.image
             const dateString = post.date;
 
             const dateObject = new Date(dateString);
             const formattedDate = dateObject.toISOString().slice(0, 19).replace("T", " ");
-
-            console.log(imgPath)
             return (
               <div className="previous-post">
                 <div className="top">
@@ -137,9 +142,12 @@ const EventDetails = () => {
                   </div>
                 </div>
                 <div className="content">
-                  <p className="texts">{post.content}</p>
+                  <p className="title">{post.type}</p>
+                  <p className="location"><IoLocationOutline />{post.location}</p>
+                  <p className="texts"><FaRegCalendarAlt />{post.date_of_event}</p>
+                  <p className="desc">{post.description}</p>
                   <div className="image">
-                    <ReactPlayer url={imgPath} controls={true} className="media-player" />
+                    <img src={imgPath} alt="" />
                   </div>
                 </div>
                 <div className="options">
@@ -152,11 +160,28 @@ const EventDetails = () => {
       </section>
       <section className={`add-form-container ${showAddPost ? 'active' : ''}`}>
         <RxCross2 className="cross" onClick={() => toggleAddPost()} />
-        <form action="" onSubmit={handleSubmit}>
-          <input type="text" placeholder="Upload a Post" onChange={(e) => setContent(e.target.value)} />
-          <input type="file" onChange={handleFile} />
-          <button type="submit">submit</button>
-        </form>
+        <form className="event-form" onSubmit={handleSubmit}>
+      <label>Title</label>
+      <input type="text" placeholder="Enter a Title here" value={title} onChange={(e) => setTitle(e.target.value)} />
+
+      <label>Location</label>
+      <input type="text" placeholder="Enter event location" value={location} onChange={(e) => setLocation(e.target.value)} />
+
+      <label>Date</label>
+      <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+
+      <label>File</label>
+      <input type="file" onChange={handleFile} />
+
+      <label>Description</label>
+      <textarea
+        placeholder="Event Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      ></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
       </section>
     </>
   )

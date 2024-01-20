@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Register from './components/UserAuth/Register/Register';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -14,6 +13,8 @@ import Posts from './components/Posts/Posts';
 import Profile from './components/Profile/Profile';
 import MyPosts from './components/Profile/MyPosts/MyPosts';
 import EventDetails from './components/EventDetails/EventDetails';
+import AddedProducts from './components/Profile/AddedProducts/AddedProducts';
+import Comments from './components/Posts/Comments/Comments';
 
 function App() {
   const token = sessionStorage.getItem('token');
@@ -32,8 +33,10 @@ function App() {
         
         <Route path="/profile" element={<Profile />} />
         <Route path="/my-posts" element={<MyPosts />} />
+        <Route path="/added-products" element={<AddedProducts />} />
         
         <Route path="/posts" element={<Posts />} />
+        <Route path="/comments/:postId" element={<Comments />} />
         <Route path="/events" element={<EventDetails />} />
 
 

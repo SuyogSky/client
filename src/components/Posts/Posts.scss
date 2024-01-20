@@ -61,6 +61,11 @@
         }
         .content{
             width: 100%;
+            .texts{
+                font-size: 12px;
+                margin-bottom: 5px;
+                color: rgba(0,0,0,0.7);
+            }
             .image{
                 width: 100%;
                 .media-player{
@@ -108,5 +113,17 @@
         font-size: 32px;
         color: white;
         cursor: pointer;
+    }
+    form{
+        h4{
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        label{
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(0,0,0,0.5);
+        }
     }
 }

@@ -44,8 +44,8 @@ const NavBar = ({ position, bg, clas }) => {
             <li onClick={() => navigate('/add-recycle')}>Add Recycled Products</li>
           </ul>
         </li>
-        <li onClick={() => navigate('/posts')}>Community</li>
-        <li>Event Postings</li>
+        <li onClick={() => navigate('/posts')}>Posts</li>
+        <li onClick={() => navigate('/events')}>Event Postings</li>
       </ul>
 
       <div className="profile"
@@ -55,16 +55,26 @@ const NavBar = ({ position, bg, clas }) => {
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
         } : null}
+        onClick={() => {
+          if (currentUser == null) {
+            navigate('/login')
+          }
+        }}
       >
-        <ul className="options">
-          <li onClick={() => navigate('/profile')}><CgProfile />Profile</li>
-          <li onClick={() => {
-            sessionStorage.clear()
-            window.location.href = '/login';
-          }}><IoMdLogOut />Logout</li>
-        </ul>
+        {currentUser?'':<CgProfile className="icon" />}
+        {currentUser ?
+          <ul className="options">
+            <li onClick={() => navigate('/profile')}><CgProfile />Profile</li>
+            <li onClick={() => {
+              sessionStorage.clear()
+              window.location.href = '/login';
+            }}><IoMdLogOut />Logout</li>
+          </ul>
+          :
+          ''
+        }
       </div>
-      
+
     </div>
   )
 }

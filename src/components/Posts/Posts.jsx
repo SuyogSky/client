@@ -142,7 +142,7 @@ const Posts = () => {
                   </div>
                 </div>
                 <div className="options">
-                  <p><FaRegCommentDots /> Comments</p>
+                  <p onClick={() => navigate(`/comments/${post.id}`)}><FaRegCommentDots /> Comments</p>
                 </div>
               </div>
             )
@@ -152,7 +152,9 @@ const Posts = () => {
       <section className={`add-form-container ${showAddPost ? 'active' : ''}`}>
         <RxCross2 className="cross" onClick={() => toggleAddPost()} />
         <form action="" onSubmit={handleSubmit}>
-          <input type="text" placeholder="Upload a Post" onChange={(e) => setContent(e.target.value)} />
+          <h4>Enter Post Details</h4>
+          <input type="text" placeholder="Enter Post Content" onChange={(e) => setContent(e.target.value)} />
+          <label htmlFor="image">Upload Media</label>
           <input type="file" onChange={handleFile} />
           <button type="submit">submit</button>
         </form>
