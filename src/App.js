@@ -15,6 +15,7 @@ import MyPosts from './components/Profile/MyPosts/MyPosts';
 import EventDetails from './components/EventDetails/EventDetails';
 import AddedProducts from './components/Profile/AddedProducts/AddedProducts';
 import Comments from './components/Posts/Comments/Comments';
+import Chat from './components/Chat/Chat';
 
 function App() {
   const token = sessionStorage.getItem('token');
@@ -39,6 +40,7 @@ function App() {
         <Route path="/comments/:postId" element={<Comments />} />
         <Route path="/events" element={<EventDetails />} />
 
+        <Route path="/chat/:userId" element={<Chat />} />
 
       </Routes>
     </BrowserRouter>

@@ -76,19 +76,23 @@
             .seller{
                 font-size: 18px;
             }
-            button{
-                width: 150px;
-                margin-top: 50px;
-                height: 30px;
-                background-color: rgb(33, 33, 33);
-                border: none;
-                outline: none;
-                color: white;
-                cursor: pointer;
-                margin-bottom: 20px;
-                &:hover{
-                    background-color: rgba(0,0,0,0.7);
-                }
+            .buttons{
+                display: flex;
+                gap: 20px;
+                button{
+                    width: 150px;
+                    margin-top: 50px;
+                    height: 30px;
+                    background-color: rgb(33, 33, 33);
+                    border: none;
+                    outline: none;
+                    color: white;
+                    cursor: pointer;
+                    margin-bottom: 20px;
+                    &:hover{
+                        background-color: rgba(0,0,0,0.7);
+                    }
+            }
             }
         }
     }
