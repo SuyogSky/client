@@ -16,6 +16,8 @@ import EventDetails from './components/EventDetails/EventDetails';
 import AddedProducts from './components/Profile/AddedProducts/AddedProducts';
 import Comments from './components/Posts/Comments/Comments';
 import Chat from './components/Chat/Chat';
+import ViewMultipleWasteMap from './components/WasteProduct/MultipleWastesMap/ViewMultipleWasteMap'
+import Journal from './components/Journal/Journal'
 
 function App() {
   const token = sessionStorage.getItem('token');
@@ -28,6 +30,7 @@ function App() {
         <Route path="/add-waste" element={<AddWaste />} />
         <Route path="/view-waste" element={<ViewWastes />} />
         <Route path="/details/:itemId" element={<SingleWaste />} />
+        <Route path="/map" element={<ViewMultipleWasteMap />} />
         <Route path="/add-recycle" element={<AddRecycle />} />
         <Route path="/view-recycle" element={<ViewRecycle />} />
         <Route path="/recycleDetails/:itemId" element={<SingleRecycle />} />
@@ -42,6 +45,7 @@ function App() {
 
         <Route path="/chat/:userId" element={<Chat />} />
 
+        <Route path="/journal" element={<Journal />} />
       </Routes>
     </BrowserRouter>
   );

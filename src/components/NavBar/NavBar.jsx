@@ -139,12 +139,14 @@ const NavBar = ({ position, bg, clas }) => {
             <ul className="drop-items">
               <li onClick={() => navigate('/view-waste')}>Waste Products</li>
               <li onClick={() => navigate('/view-recycle')}>Recycled Products</li>
+              <li onClick={() => navigate('/map')}>Map</li>
               <li onClick={() => navigate('/add-waste')}>Add Waste Products</li>
               <li onClick={() => navigate('/add-recycle')}>Add Recycled Products</li>
             </ul>
           </li>
           <li onClick={() => navigate('/posts')}>Posts</li>
           <li onClick={() => navigate('/events')}>Event Postings</li>
+          <li onClick={() => navigate('/journal')}>Journals</li>
         </ul>
 
         <div className="profile"

@@ -4,6 +4,7 @@ import { MdPostAdd } from "react-icons/md";
 import { GiWaterBottle } from "react-icons/gi";
 import { FaRecycle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import ReceivedList from "../../Chat/ReceivedList";
 
 const SideBar = () => {
     const navigate = useNavigate()
@@ -11,7 +12,8 @@ const SideBar = () => {
     const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
 
     return (
-        <div className="user-info">
+        <>
+            <div className="user-info">
             <div className="profile-image"
                 style={currentUser ? {
                     backgroundImage: `url(${ip() + currentUser.image})`,
@@ -34,6 +36,7 @@ const SideBar = () => {
                 <li><FaRecycle />Purchases</li>
             </ul>
         </div>
+        </>
     )
 }
 export default SideBar
