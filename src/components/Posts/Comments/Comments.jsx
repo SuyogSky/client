@@ -4,13 +4,13 @@ import Axios from "axios";
 import ip from "../../ip/ip";
 import ReactPlayer from "react-player";
 import './Comments.scss'
-
+import { RxCross2 } from "react-icons/rx";
 const swal = require('sweetalert2')
 
 const Comments = () => {
     const { postId } = useParams();
     const navigate = useNavigate()
-    const [comments, setComments] = useState();
+    const [postDetail, setPostDetail] = useState();
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         setLoading(true)
@@ -20,30 +20,30 @@ const Comments = () => {
                     Authorization: `Token ${sessionStorage.getItem('token')}`
                 }
             }).then((response) => {
-                setComments(response.data.data);
+                setPostDetail(response.data.data)
                 setLoading(false)
             }).then(() => {
             })
         };
 
-        fetchComments();
+        fetchPostDetails();
 
     }, [postId]);
 
     return (
         <section className="comments-section">
             <div className="image">
-                
+                {postDetail?<ReactPlayer url={ip() + postDetail.post.media} controls={true} className="media-player" />:''}
             </div>
             <div className="comments-container">
                 <div className="top">
-
+                    <RxCross2 />
                 </div>
                 <div className="content">
-
+                    
                 </div>
                 <div className="comments">
-                    {comments
+                    {/* {comments
                         ? comments.map((comment) => {
                             const imgPath = ip() + comment.post.media
                             const dateString = comment.post.date;
@@ -54,7 +54,7 @@ const Comments = () => {
                             return (
                                 <div className="previous-post">
                                     hasd
-                                    {/* <div className="top">
+                                    <div className="top">
                                         <div className="profile-image"
                                             style={post.user ? {
                                                 backgroundImage: `url(${ip() + post.user.image})`,
@@ -77,11 +77,11 @@ const Comments = () => {
                                     </div>
                                     <div className="options">
                                         <p onClick={() => navigate(`/comments/${post.id}`)}><FaRegCommentDots /> Comments</p>
-                                    </div> */}
+                                    </div>
                                 </div>
                             )
                         })
-                        : null}
+                        : null} */}
                 </div>
             </div>
         </section>
