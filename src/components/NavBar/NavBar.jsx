@@ -7,6 +7,8 @@ import { CgProfile } from "react-icons/cg";
 import Axios from 'axios'
 import { RxCrossCircled } from 'react-icons/rx'
 import ChatIcon from '../../Assets/Images/chatbot.png'
+import { IoSend } from "react-icons/io5";
+
 const swal = require('sweetalert2')
 
 const NavBar = ({ position, bg, clas }) => {
@@ -14,6 +16,7 @@ const NavBar = ({ position, bg, clas }) => {
   const currentUserString = sessionStorage.getItem('user');
   const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
 
+  const [loading, setLoading] = useState(false)
 
   const [navScroll, setNavScroll] = useState('');
 
@@ -72,6 +75,7 @@ const NavBar = ({ position, bg, clas }) => {
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+      console.log('hi', messagesContainerRef.current)
     }
   };
 
@@ -85,6 +89,7 @@ const NavBar = ({ position, bg, clas }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true)
     try {
       const formData = new FormData();
       formData.append('user_input', userinput);
@@ -116,6 +121,7 @@ const NavBar = ({ position, bg, clas }) => {
         });
         console.log(response.data.message);
       }
+      setLoading(false)
     } catch (error) {
       console.error(error);
     }
@@ -173,24 +179,29 @@ const NavBar = ({ position, bg, clas }) => {
         <img src={ChatIcon} alt="" height={"100px"} />
       </div>
       {chatdisplay && (
-        <div className="chatbox" ref={messagesContainerRef}>
+        <div className="chatbox">
           <div className="chat-box-header">
-            ChatBot
-            <button className="close-button" onClick={() => setChatDisplay(false)}>
-              <i className="material-icon"><RxCrossCircled /></i>
-            </button>
+            <h2>ChatBot</h2>
+            <RxCrossCircled className="close-button" onClick={() => setChatDisplay(false)} />
           </div>
-          <div className="chats-messages">
+          <div className="chats-messages custom-scrollbar" ref={messagesContainerRef}>
             {chat
               ? chat.map((item) => (
                 <div className="product-card" key={item.id}>
                   <div className="question-div">
                     <p className="question">{item.question}</p>
-                    <img src={ip() + currentUser.image} alt="" height={"30"} width={"20px"} />
-
+                    <div className="user-image"
+                      style={currentUser ? {
+                        backgroundImage: `url(${ip() + currentUser.image})`,
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat',
+                      } : null}
+                    >
+                    </div>
                   </div>
                   <div className="answer-div">
-                    <img src="" alt="" />
+                    <div className="bot-image"></div>
                     <p className="answer">{item.answer}</p>
                   </div>
                 </div>
@@ -199,9 +210,15 @@ const NavBar = ({ position, bg, clas }) => {
           </div>
           <div className="chatform-div">
             <form onSubmit={handleSubmit} className="chat-form">
-              <input type='text' placeholder='Search...' onChange={(e) => setuserInput(e.target.value)} />
-              <input type="submit" value="send" className="chat-submit" id="chat-submit">
-              </input>
+              <input type='text' placeholder='Message...' onChange={(e) => setuserInput(e.target.value)} />
+              
+              {loading ?
+                <div class="loader">
+                  <li class="ball"></li>
+                  <li class="ball"></li>
+                  <li class="ball"></li>
+                </div>
+                : <button type="submit" value="send" className="chat-submit" id="chat-submit"><IoSend /></button>}
             </form>
           </div>
         </div>
